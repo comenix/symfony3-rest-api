@@ -1,11 +1,11 @@
 {
-    "name": "hiphiparray-api",
+    "name": "hiphiparray_api",
     "license": "proprietary",
     "type": "project",
     "description": "Hip Hip Array API",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "HipHipArray\\": "src/"
         },
         "classmap": [
             "app/AppKernel.php",
