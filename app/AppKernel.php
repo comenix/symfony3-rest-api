@@ -40,18 +40,9 @@ class AppKernel extends Kernel
         return __DIR__;
     }
 
-    /**
-     * @return string
-     */
     public function getCacheDir()
     {
-        $cacheDir = dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
-
-        if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
-            $cacheDir = '/var/project-cache/hiphiparray/' .$this->environment . '/cache';
-        }
-
-        return $cacheDir;
+        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
     }
 
     public function getLogDir()
