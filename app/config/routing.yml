@@ -1,3 +1,4 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+hip_app:
+    resource: "@HipAppBundle/Resources/config/routing.yml"
+    prefix:   /
+

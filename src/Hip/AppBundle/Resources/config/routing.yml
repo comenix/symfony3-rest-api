@@ -1,0 +1,3 @@
+hip_app_homepage:
+    path:     /
+    defaults: { _controller: HipAppBundle:Default:index }

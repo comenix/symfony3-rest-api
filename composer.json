@@ -5,7 +5,7 @@
     "description": "Hip Hip Array API",
     "autoload": {
         "psr-4": {
-            "HipHipArray\\": "src/"
+            "Hip\\": "src/Hip"
         },
         "classmap": [
             "app/AppKernel.php",
