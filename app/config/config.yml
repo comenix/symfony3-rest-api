@@ -27,9 +27,12 @@ framework:
     trusted_proxies: ~
     session:
         name: %session_name%
+        # Set these both to null to prevent: Warning: session_write_close(): Failed to write session data (user)
+        handler_id: null
+        save_path: null
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
-        handler_id:  session.handler.native_file
-        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+        # handler_id:  session.handler.native_file
+        # save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
     fragments:       ~
     http_method_override: true
     assets: ~
