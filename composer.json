@@ -1,8 +1,8 @@
 {
-    "name": "hiphiparray/api",
-    "license": "proprietary",
+    "name": "mattyhansen/symfony3-rest-api",
+    "license": "MIT",
     "type": "project",
-    "description": "Hip Hip Array API",
+    "description": "Symfony3 RESTful API",
     "autoload": {
         "psr-4": {
             "Hip\\": "src/Hip"

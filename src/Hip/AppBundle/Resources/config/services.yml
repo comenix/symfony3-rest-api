@@ -1,4 +1,32 @@
 services:
-#    hip_app.example:
-#        class: Hip\AppBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+    hip.app_bundle.content_repository:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.default_entity_manager
+        factory_method: getRepository
+        arguments:
+            - Hip\AppBundle\Entity\Content
+
+    hip.app_bundle.content_dispatcher:
+        class: Hip\Content\Dispatcher\ContentDispatcher
+        arguments:
+            - "@hip.app_bundle.content_repository"
+            - "@hip.app_bundle.form.handler.content_form_handler"
+
+    hip.app_bundle.content_provider:
+        class: Hip\Content\Provider\ContentProvider
+        arguments:
+            - "@hip.app_bundle.content_repository"
+            - "@hip.app_bundle.form.handler.content_form_handler"
+
+    # http://symfony.com/doc/current/book/forms.html#defining-your-forms-as-services
+    hip.app_bundle.form.type.content:
+        class: Hip\Content\Form\Type\ContentType
+        tags:
+            - { name: form.type, alias: content_form }
+
+    hip.app_bundle.form.handler.content_form_handler:
+        class: Hip\AppBundle\Form\Handler\FormHandler
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@form.factory"
+            - "@hip.app_bundle.form.type.content"

@@ -1,3 +1,10 @@
-hip_app_homepage:
-    path:     /
-    defaults: { _controller: HipAppBundle:Default:index }
+# Using the controller, otherwise the get contents (ie. all contents) route would all require a / at the end
+  # since @StarterAppBundle/Resources/config/routing/contents.yml can't have empty pattern
+
+# Using this controller as the routing.yml resource, will tell Symfony2 to automatically generate proper REST routes from this controller action names.
+# Notice "type: rest" option is required so that the RestBundle can find which routes are supported.
+# see: http://symfony.com/doc/master/bundles/FOSRestBundle/5-automatic-route-generation_single-restful-controller.html#single-restful-controller-routes
+contents:
+    type:     rest
+    resource: "@HipAppBundle/Controller/ContentController.php"
+    name_prefix:  api_1_ # naming collision
