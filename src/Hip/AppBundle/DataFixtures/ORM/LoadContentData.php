@@ -10,7 +10,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 /**
  *
 USAGE:
-app/console doctrine:fixtures:load -n --env=dev
+bin/console doctrine:fixtures:load -n --env=dev
  *
  * Class LoadContentData
  * @package Hip\AppBundle\DataFixtures\ORM

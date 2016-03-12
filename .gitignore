@@ -1,7 +1,8 @@
 # Symfony
 /app/config/parameters.yml
-/build/
-/phpunit.xml
+!var/SymfonyRequirements.php
+
+# Cache and logs (Symfony3)
 /var/*
 !/var/cache
 /var/cache/*
@@ -12,9 +13,27 @@
 !/var/sessions
 /var/sessions/*
 !var/sessions/.gitkeep
-!var/SymfonyRequirements.php
+
+# Managed by Composer
+/var/bootstrap.php.cache
+/bin/*
+!bin/console
+!bin/symfony_requirements
 /vendor/
+
+# Assets and user uploads
 /web/bundles/
+
+# PhantomJS
+phantomjs/
+!bin/phantomjs/*.md
+!bin/phantomjs/*.sh
+
+# Codeception
+codeception.yml
+tests/_output/*
 
 # JetBrains
 .idea/
+
+tests/_output/*
