@@ -29,13 +29,9 @@ class ContentFormTest extends \Symfony\Component\Form\Test\TypeTestCase
             'body' => 'test2',
         );
 
-        $type = new \Hip\Content\Form\Type\ContentType();
-        $form = $this->factory->create($type);
+        $form = $this->factory->create(\Hip\Content\Form\Type\ContentType::class, new \Hip\AppBundle\Entity\Content());
 
-        $object = new \Hip\AppBundle\Entity\Content();
-        $object
-            ->setTitle($formData['title'])
-            ->setBody($formData['body']);
+        $object = \Hip\AppBundle\Entity\Content::fromArray($formData);
 
         // submit the data to the form directly
         $form->submit($formData);

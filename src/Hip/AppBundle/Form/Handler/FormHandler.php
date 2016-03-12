@@ -18,7 +18,7 @@ class FormHandler
     private $entityManager;
     /** @var FormFactoryInterface $formFactory */
     private $formFactory;
-    /** @var FormTypeInterface $formType */
+    /** @var string $formType */
     private $formType;
 
     /**
@@ -27,7 +27,7 @@ class FormHandler
      * @param FormFactoryInterface $formFactory
      * @param FormTypeInterface $formType
      */
-    public function __construct(ObjectManager $objectManager, FormFactoryInterface $formFactory, FormTypeInterface $formType)
+    public function __construct(ObjectManager $objectManager, FormFactoryInterface $formFactory, string $formType)
     {
         $this->entityManager = $objectManager;
         $this->formFactory = $formFactory;
@@ -53,6 +53,7 @@ class FormHandler
         //TODO: perhaps set "'csrf_protection' => false" in the config.xml instead (eg. disable_csrf_role: ROLE_API)
         $options = ['method' => $method, 'csrf_protection' => false];
         $form = $this->formFactory->create($this->formType, $object, $options);
+//        $form = $this->formFactory->create('Hip\Content\Form\Type\ContentType', $object, $options);
 
         /**
          * The second parameter ($clearMissing) to allow patch being applied atomically (only patched fields are saved)

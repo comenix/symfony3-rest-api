@@ -28,4 +28,4 @@ services:
         arguments:
             - "@doctrine.orm.entity_manager"
             - "@form.factory"
-            - "@hip.app_bundle.form.type.content"
+            - Hip\Content\Form\Type\ContentType

@@ -8,6 +8,11 @@ Security Check
 php bin/console security:check
 ```
 
+Symfony show all routes
+```
+php bin/console debug:router
+```
+
 
 ### Database
 
@@ -64,4 +69,11 @@ vendor/codeception/codeception/codecept build
 ```
 vendor/codeception/codeception/codecept run unit
 vendor/codeception/codeception/codecept run api
+```
+
+
+### API Documentation
+
+```
+[DOMAIN]/api/doc
 ```

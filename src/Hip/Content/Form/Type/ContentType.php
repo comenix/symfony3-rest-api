@@ -3,8 +3,10 @@
 namespace Hip\Content\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class ContentType
@@ -22,15 +24,17 @@ class ContentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text')
-            ->add('body', 'text')
+            ->add('title', TextType::class)
+            ->add('body', TextType::class)
         ;
     }
     
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
+     *
+     * @throws AccessException
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Hip\AppBundle\Entity\Content'

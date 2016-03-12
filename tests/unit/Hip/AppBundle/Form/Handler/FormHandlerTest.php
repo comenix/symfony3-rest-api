@@ -44,22 +44,26 @@ class FormHandlerTest extends \Codeception\TestCase\Test
 
     /**
      * @expectedException TypeError
-     * @expectedExceptionMessageRegExp /Symfony\\Component\\Form\\FormTypeInterface/
+     * @expectedExceptionMessageRegExp /must be of the type string, object given/
      */
     public function testFormHandlerThrowsWhenGivenInvalidFormType()
     {
         new FormHandler($this->getMockEntityManager(), $this->formFactory, new \StdClass());
     }
 
+
+
     /**
-     * @expectedException Symfony\Component\Form\Exception\LogicException
-     * @expectedExceptionMessageRegExp /Hip\\AppBundle\\Entity\\Content/
+     * @expectedException Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException
+     * @expectedExceptionMessageRegExp /Neither the property "title" nor one of the methods/
      */
     public function testProcessFormThrowsWhenGivenInvalidObjectForAGivenFormType()
     {
-        $formHandler = new FormHandler($this->getMockEntityManager(), $this->formFactory, new ContentType());
+        $formHandler = new FormHandler($this->getMockEntityManager(), $this->formFactory, ContentType::class);
         $formHandler->processForm(new \StdClass(), [], 'POST');
     }
+
+
 
     /**
      * @expectedException Hip\AppBundle\Exception\InvalidFormException
@@ -80,14 +84,14 @@ class FormHandlerTest extends \Codeception\TestCase\Test
         /**
          * Process Form
          */
-        $formHandler = new FormHandler($this->getMockEntityManager(), $formFactory, new ContentType());
+        $formHandler = new FormHandler($this->getMockEntityManager(), $formFactory, ContentType::class);
         $formHandler->processForm(new \Hip\AppBundle\Entity\Content(), [], 'POST');
     }
 
 
     public function testProcessFormReturnsValidObjectOnSuccess()
     {
-        $formHandler = new FormHandler($this->getMockEntityManager(), $this->formFactory, new ContentType());
+        $formHandler = new FormHandler($this->getMockEntityManager(), $this->formFactory, ContentType::class);
 
         $parameters = ['title' => 'main title', 'body' => 'yada yada yada'];
         static::assertInstanceOf(
@@ -101,9 +105,7 @@ class FormHandlerTest extends \Codeception\TestCase\Test
      */
     private function getMockEntityManager()
     {
-        /** @var \Doctrine\Common\Persistence\ObjectManager $em */
-        $em = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
-        return $em;
+        return $this->getMock('Doctrine\Common\Persistence\ObjectManager');
     }
 
     /**

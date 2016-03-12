@@ -44,6 +44,24 @@ class Content extends BaseEntity implements ContentInterface
      */
     private $body;
 
+
+    /**
+     * @param $array
+     * @return Content
+     */
+    public static function fromArray($array)
+    {
+        $model = new self();
+        if (array_key_exists('title', $array)) {
+            $model->setTitle($array['title']);
+        }
+        if (array_key_exists('body', $array)) {
+            $model->setBody($array['body']);
+        }
+
+        return $model;
+    }
+
     /**
      * @return int
      */

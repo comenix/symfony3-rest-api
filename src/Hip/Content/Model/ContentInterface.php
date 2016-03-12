@@ -18,4 +18,10 @@ interface ContentInterface
      * @return mixed
      */
     public function getBody();
+
+    /**
+     * @param $array
+     * @return mixed
+     */
+    public static function fromArray($array);
 }

@@ -11,6 +11,8 @@ class ContentProviderTest extends \PHPUnit_Framework_TestCase
     }
 
     // tests
+
+
     public function testCanConstruct()
     {
         $repo = $this->getMockRepository();
@@ -20,6 +22,7 @@ class ContentProviderTest extends \PHPUnit_Framework_TestCase
             $provider
         );
     }
+
 
     public function testCanGetWithValidId()
     {
@@ -85,7 +88,6 @@ class ContentProviderTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $provider = new \Hip\Content\Provider\ContentProvider($repo, $handler);
-        return $provider;
+        return new \Hip\Content\Provider\ContentProvider($repo, $handler);
     }
 }
