@@ -72,13 +72,13 @@ vendor/codeception/codeception/codecept build
 ### Running Tests
 
 ```
-vendor/codeception/codeception/codecept run unit
-vendor/codeception/codeception/codecept run api
+vendor/bin/codecept run unit
+vendor/bin/codecept run api
 ```
 
 
-### API Documentation
+### API Docs
 
 ```
-[DOMAIN]/api/doc
+http://api.symfony3.dev/api/doc
 ```
