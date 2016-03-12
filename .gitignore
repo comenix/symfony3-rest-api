@@ -35,5 +35,3 @@ tests/_output/*
 
 # JetBrains
 .idea/
-
-tests/_output/*
