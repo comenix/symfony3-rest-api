@@ -6,5 +6,4 @@
 # see: http://symfony.com/doc/master/bundles/FOSRestBundle/5-automatic-route-generation_single-restful-controller.html#single-restful-controller-routes
 contents:
     type:     rest
-    resource: "@HipAppBundle/Controller/ContentController.php"
-    name_prefix:  api_1_ # naming collision
+    resource: Hip\AppBundle\Controller\ContentController

@@ -27,7 +27,7 @@ use Hip\AppBundle\Provider\ProviderInterface;
  *
  * @package Hip\AppBundle\Controller
  */
-class BaseController extends FOSRestController implements ClassResourceInterface
+class BaseController extends FOSRestController
 {
 
     /**
@@ -48,25 +48,13 @@ class BaseController extends FOSRestController implements ClassResourceInterface
     protected $provider;
 
     /**
-     * Sets the Container associated with this Controller.
-     *
-     * @param ContainerInterface $container A ContainerInterface instance
-     *
-     * @api
-     */
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
-    /**
      * @param $id
      *
      * @return mixed
      *
      * @throws NotFoundHttpException
      */
-    protected function getOr404($id)
+    protected function fetchResponse($id)
     {
         $response = $this->provider->get($id);
 

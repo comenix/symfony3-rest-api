@@ -1,8 +1,7 @@
 services:
     hip.app_bundle.content_repository:
         class: Doctrine\ORM\EntityRepository
-        factory_service: doctrine.orm.default_entity_manager
-        factory_method: getRepository
+        factory: ["@doctrine", getRepository]
         arguments:
             - Hip\AppBundle\Entity\Content
 

@@ -79,12 +79,19 @@ doctrine_migrations:
     name: Application Migrations
 
 sensio_framework_extra:
-    view: { annotations: false }
-#    router: { annotations: true }
-#    request: { converters: true }
+    router:      { annotations: true }
+    request:     { converters: true, auto_convert: true }
+    view:        { annotations: true }
+    cache:       { annotations: true }
+    security:    { annotations: true }
+    psr_message: { enabled: false }
 
 fos_rest:
+    versioning: true
     param_fetcher_listener: true
+    routing_loader:
+        default_format: json
+        include_format: false
 #    service:
 #        exception_handler: fos_rest.view.exception_wrapper_handler
     view:
@@ -98,9 +105,6 @@ fos_rest:
     allowed_methods_listener: true
     access_denied_listener:
         json: true
-    routing_loader:
-        default_format: json
-        include_format: false
     exception:
         codes:
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
@@ -108,6 +112,6 @@ fos_rest:
         messages:
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
     body_listener: true
-#    disable_csrf_role: ROLE_API
+##    disable_csrf_role: ROLE_API
 
 nelmio_api_doc: ~

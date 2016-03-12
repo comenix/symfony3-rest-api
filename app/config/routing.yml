@@ -5,5 +5,4 @@ NelmioApiDocBundle:
 
 hip_app:
     resource: "@HipAppBundle/Resources/config/routing.yml"
-    prefix:   /
-
+    prefix:   /api/v1/

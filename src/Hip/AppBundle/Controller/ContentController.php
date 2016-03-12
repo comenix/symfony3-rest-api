@@ -5,10 +5,10 @@ namespace Hip\AppBundle\Controller;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcherInterface;
+use FOS\RestBundle\Controller\Annotations\Version;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Symfony\Component\Form\Exception\AlreadySubmittedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -18,6 +18,7 @@ use Hip\AppBundle\Entity\Content;
 use Hip\AppBundle\Exception\InvalidFormException;
 
 /**
+ *
  * Class ContentController
  * @package Hip\AppBundle\Controller
  */
@@ -46,13 +47,10 @@ class ContentController extends BaseController
      *
      * @throws NotFoundHttpException
      */
-    public function getAction($id)
+    public function getContentAction($id)
     {
         $this->provider = $this->get('hip.app_bundle.content_provider');
-        /**
-         * Use "public function getAction($id)" if "implements ClassResourceInterface" for dynamic routing
-         */
-        return $this->getOr404($id);
+        return $this->fetchResponse($id);
     }
 
     /**
@@ -81,7 +79,7 @@ class ContentController extends BaseController
      *
      * @return array
      */
-    public function cgetAction(Request $request, ParamFetcherInterface $paramFetcher)
+    public function getContentsAction(Request $request, ParamFetcherInterface $paramFetcher)
     {
         /**
          * Ensure "fos_rest: param_fetcher_listener: true" is set in the config.xml to allow for paramFetcher
@@ -113,7 +111,7 @@ class ContentController extends BaseController
      * @throws AlreadySubmittedException
      * @throws InvalidOptionsException
      */
-    public function postAction(Request $request)
+    public function postContentAction(Request $request)
     {
         try {
             /** @var Content $content */
@@ -150,7 +148,7 @@ class ContentController extends BaseController
      * @throws AlreadySubmittedException
      * @throws InvalidOptionsException
      */
-    public function putAction(Request $request, $id)
+    public function putContentAction(Request $request, $id)
     {
         //return new Response(null, Response::HTTP_BAD_REQUEST);
         /** @var Content $content */
@@ -201,13 +199,13 @@ class ContentController extends BaseController
      * @throws InvalidOptionsException
      * @throws NotFoundHttpException
      */
-    public function patchAction(Request $request, $id)
+    public function patchContentAction(Request $request, $id)
     {
         try {
             $this->provider = $this->get('hip.app_bundle.content_provider');
 
             /** @var Content $content */
-            $content = $this->getOr404($id);
+            $content = $this->fetchResponse($id);
             $content = $this->get('hip.app_bundle.content_dispatcher')->patch($content, $request->request->all());
             $routeOptions = [
                 'id' => $content->getId(),
@@ -240,12 +238,12 @@ class ContentController extends BaseController
      *
      * @throws NotFoundHttpException
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteContentAction(Request $request, $id)
     {
         $this->provider = $this->get('hip.app_bundle.content_provider');
 
         /** @var Content $content */
-        $content = $this->getOr404($id);
+        $content = $this->fetchResponse($id);
         $this->get('hip.app_bundle.content_dispatcher')->delete($content);
     }
 }
